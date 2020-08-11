@@ -1,0 +1,36 @@
+.search-input {
+  height: 50px;
+  font-size: 20px;
+  width: 100%;
+  border: 1px grey solid;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  position: relative;
+  padding: 5px 15px;
+  
+  &:focus {
+    border-color: #583CC8;
+  }
+}
+
+.suggest {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.suggest-option {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 15px;
+  background-color: #FFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background-color: #e6e6e6;
+  }
+}

@@ -1,0 +1,24 @@
+.container {
+  position: relative;
+  height: 200px;
+  width: 325px;
+  margin-bottom: 32px;
+}
+
+.imagen {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+}
+
+.car-info {
+  font-size: 12px;
+  max-width: 160px;
+  pointer-events: none;
+  color: #fff;
+}

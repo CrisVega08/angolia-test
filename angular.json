@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Algolia"
+    }
+  },
+  "defaultProject": "Algolia",
+  "cli": {
+    "analytics": false
+  }
 }

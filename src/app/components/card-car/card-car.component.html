@@ -1,0 +1,55 @@
+<div class="container">
+
+    <img
+      (lazyLoad)="lazyLoad()"
+      class="imagen"
+      [alt]="carInfo?.car_name"
+      [src]="carInfo?.image_url + '?d=432x248'"
+      />
+
+
+  <div *ngIf="carInfo?.icon_path" class="">
+    <img
+      [src]="carInfo?.icon_path"
+      width="auto"
+      alt="icon"
+      [style.height]="carInfo?.icon_height"
+      [style.z-index]="10"
+    />
+  </div>
+
+  <div class="info">
+    <div class="">
+      <h3 class="car-info">
+        ${{
+          carInfo?.promotion_name
+            ? (carInfo?.promotion_price | number)
+            : (carInfo?.price | number)
+        }}
+      </h3>
+      <div
+        class=""
+        *ngIf="carInfo?.promotion_name"
+      >
+        <h4 class="">
+          ${{ carInfo?.price | number }}
+        </h4>
+        <div class=""></div>
+      </div>
+    </div>
+
+      <h2 class="car-info">
+
+          <!-- {{ data?.car_make }}
+          {{ data?.car_model }}
+          {{ data?.version }} -->
+          {{ carInfo?.car_name }}
+
+
+            {{ carInfo?.car_year }} | {{ carInfo?.traveled }}
+            {{ carInfo?.transmission }} | {{ carInfo?.region_name }}
+
+      </h2>
+
+  </div>
+</div>
