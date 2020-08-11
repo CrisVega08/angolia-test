@@ -1,0 +1,6 @@
+<select class='select-container' (change)='emitQuery($event)'>
+  <option *ngFor='let option of options' [value]="option.value" class="select-item">
+    {{ option.labelDesktop }}
+  </option>
+</select>
+

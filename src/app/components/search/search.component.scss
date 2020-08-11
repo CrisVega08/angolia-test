@@ -1,3 +1,7 @@
+.search-container {
+  flex: 1;
+}
+
 .search-input {
   height: 50px;
   font-size: 20px;
@@ -7,7 +11,7 @@
   margin-bottom: 12px;
   position: relative;
   padding: 5px 15px;
-  
+
   &:focus {
     border-color: #583CC8;
   }

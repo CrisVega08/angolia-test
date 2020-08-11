@@ -1,8 +1,10 @@
 
 <div class="app-container">
-  <app-search [suggest]='suggest' (queryValueChanged)='newQuery($event)'></app-search>
+  <div class='search-options'>
+    <app-order-by-select [options]='orderByIndecesOptions' (changeQueryOrderBy)='orderByChanged($event)'></app-order-by-select>
+    <app-search [suggestions]='suggestions' (queryValueChanged)='newQuery($event)'></app-search>
+  </div>
   <div class="container-result">
     <app-card-car *ngFor='let car of cars; trackBy:trackByCard' [carInfo]='car'></app-card-car>
   </div>
 </div>
-

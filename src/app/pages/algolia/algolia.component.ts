@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import algoliasearch from 'algoliasearch';
 import { AlgoliaService } from '../../services/algolia.service';
-import { queries } from '../../constants/algolia'
+import { BASE_QUERIES, ORDER_BY_OPTIONS } from '../../constants/algolia';
 @Component({
   selector: 'app-algolia',
   templateUrl: './algolia.component.html',
@@ -17,30 +17,44 @@ export class AlgoliaComponent implements OnInit {
     querySuggestions: 'dev_qs',
   };
   cars: [];
-  suggest: [];
+  suggestions: [];
+  orderByIndecesOptions = ORDER_BY_OPTIONS;
+  currentQuery = '';
+  facets: [];
+  baseQueries = BASE_QUERIES;
   constructor(private algoliaService: AlgoliaService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.client = algoliasearch(this.algolia.app_id, this.algolia.api_key);
     this.index = this.client.initIndex(this.algolia.index);
-    this.algoliaService.subject.subscribe(queries => {
-      this.client.multipleQueries(queries).then(({ results }) => {
+    this.algoliaService.subject.subscribe(newQueries => {
+      this.client.multipleQueries(newQueries).then(({ results }) => {
         const [ cars, suggest ] = results;
         const { hits, facets } = cars;
-        this.suggest = suggest.hits;
+        if (suggest) {
+          this.suggestions = suggest.hits;
+        }
         this.cars = hits;
-        // filterService.createFilter(facets);
+        this.facets = facets;
       });
-    })
+    });
   }
 
   trackByCard(_, car: any): string {
     return car.objectID;
   }
 
-  newQuery(query) {
-    const base = Object.assign([], queries)
-    base.forEach(config => config.query = query)
-    this.algoliaService.newSearch(base)
+  newQuery(query): void {
+    this.currentQuery = query;
+    const base = Object.assign([], this.baseQueries);
+    base.forEach(config => config.query = query);
+    this.algoliaService.newSearch(base);
+  }
+
+  orderByChanged(indexName): void {
+    this.client.initIndex(indexName);
+    const [newQuery] = Object.assign(this.baseQueries, [{ indexName, query: this.currentQuery }]);
+    console.log(newQuery);
+    this.algoliaService.newSearch([newQuery]);
   }
 }

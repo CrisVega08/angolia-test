@@ -1,9 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="search-container">
   <div class="search-container" (clickOutside)="showResults = false">
     <input class='search-input' type="text" formControlName='value' (focus)="showResults = true">
     <ul class="suggest" *ngIf='showResults' >
-      <li *ngFor="let sugget of suggest" class="suggest-option">
-        {{ sugget.query }}
+      <li *ngFor="let suggestion of suggestions" class="suggest-option" (click)='setValue(suggestion.query)'>
+        {{ suggestion.query }}
       </li>
     </ul>
   </div>
