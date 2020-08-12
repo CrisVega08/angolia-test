@@ -22,6 +22,7 @@ export class AlgoliaComponent implements OnInit {
   currentQuery = '';
   facets: [];
   baseQueries = BASE_QUERIES;
+  facetsGetted = false;
   constructor(private algoliaService: AlgoliaService) {}
 
   ngOnInit(): void {
@@ -35,8 +36,21 @@ export class AlgoliaComponent implements OnInit {
           this.suggestions = suggest.hits;
         }
         this.cars = hits;
+        if (!this.facetsGetted) {
+          this.algoliaService.setFilters(facets);
+          this.facetsGetted = true;
+        }
         this.facets = facets;
       });
+    });
+        // this.testFacets();
+  }
+
+  testFacets(): void{
+    this.index.search('', {
+      filters: 'car_make:chevrolet'
+    }).then(({ hits }) => {
+      this.cars = hits;
     });
   }
 
@@ -53,8 +67,8 @@ export class AlgoliaComponent implements OnInit {
 
   orderByChanged(indexName): void {
     this.client.initIndex(indexName);
+    this.algoliaService.setIndex(indexName)
     const [newQuery] = Object.assign(this.baseQueries, [{ indexName, query: this.currentQuery }]);
-    console.log(newQuery);
     this.algoliaService.newSearch([newQuery]);
   }
 }

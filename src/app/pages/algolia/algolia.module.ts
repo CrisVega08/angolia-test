@@ -6,6 +6,7 @@ import { AlgoliaComponent } from './algolia.component';
 import { CardCarModule } from '../../components/card-car/card-car.module';
 import { SearchModule} from '../../components/search/search.module';
 import { OrderBySelectModule } from '../../components/order-by-select/order-by-select.module';
+import { FiltersModule } from './components/filters/filters.module';
 
 @NgModule({
   declarations: [AlgoliaComponent],
@@ -13,7 +14,8 @@ import { OrderBySelectModule } from '../../components/order-by-select/order-by-s
     CommonModule,
     CardCarModule,
     SearchModule,
-    OrderBySelectModule
+    OrderBySelectModule,
+    FiltersModule
   ],
   exports: [AlgoliaComponent]
 })

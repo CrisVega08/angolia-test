@@ -1,22 +1,12 @@
 <div class="container">
 
-    <img
-      (lazyLoad)="lazyLoad()"
-      class="imagen"
-      [alt]="carInfo?.car_name"
-      [src]="carInfo?.image_url + '?d=432x248'"
-      />
-
-
-  <div *ngIf="carInfo?.icon_path" class="">
-    <img
-      [src]="carInfo?.icon_path"
-      width="auto"
-      alt="icon"
-      [style.height]="carInfo?.icon_height"
-      [style.z-index]="10"
+  <img
+    (lazyLoad)="lazyLoad()"
+    class="imagen"
+    [alt]="carInfo?.car_name"
+    [src]="carInfo.image_url ? carInfo.image_url + '?d=432x248' : 'assets/car-default.jpg'"
     />
-  </div>
+    <!-- (error)="carInfo.image_url = " -->
 
   <div class="info">
     <div class="">

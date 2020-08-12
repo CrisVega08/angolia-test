@@ -5,6 +5,11 @@
   justify-content: space-evenly;
 }
 
+.container-page {
+  max-width: 100%;
+  display: flex;
+}
+
 .search-options {
   width: 100%;
   height: 70px;
