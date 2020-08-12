@@ -1,11 +1,9 @@
 .make-container {
-  display: flex;
   width: 100%;
-  flex-flow: wrap;
-  justify-content: space-evenly;
-  overflow: hidden;
-  height: 60px;
+  overflow-y: scroll;
+  height: 250px;
   padding-top: 20px;
+  padding-left: 20px;
   border-bottom: 1px solid red;
 }
 
@@ -39,4 +37,23 @@
   top: 70px;
   text-decoration: underline;
   color: #583CC8;
+}
+
+.dropdown-make-car {
+  display: none;
+  flex-direction: column;
+  margin-left: 30px;
+  align-items: self-start;
+  
+}
+
+.make-car-item {
+  height: 30px;
+  &:hover {
+    color: #583CC8;
+  }
+}
+
+.make-car-active {
+  display: flex;
 }

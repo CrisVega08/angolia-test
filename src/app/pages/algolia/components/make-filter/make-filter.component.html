@@ -1,7 +1,14 @@
 <div [ngClass]="{'make-container': true, 'full-height': full}">
   <button type="button" class='show-more-less' (click)='full = !full'> {{ full ? 'Ver menos' : 'Ver más' }}</button>
-  <button *ngFor='let make of makes' class='make-btn' type="button" (click)='selectedMake(make.make)'>
-    <i class="make-icon" [style.backgroundImage]='"url(" + make.url +")"'></i>
-    {{ make.make }}
-  </button>
+  <div *ngFor='let make of makes'>
+    <button  class='make-btn' type="button" (click)='selectedMake(make.make)'>
+      <i class="make-icon" [style.backgroundImage]='"url(" + make.url +")"'></i>
+      {{ make.make }}
+    </button>
+    <div [ngClass]="{'dropdown-make-car': true, 'make-car-active': currentMake === make.make }">
+      <button class="make-car-item" *ngFor='let model of carModels' type="button" (click)="selectedModel(model.model)">
+        {{ model.model}} - ({{ model.quantity }})
+      </button>
+    </div>
+  </div>
 </div>

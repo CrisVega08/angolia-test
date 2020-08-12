@@ -11,7 +11,8 @@ export class AlgoliaService {
   facets = new BehaviorSubject({});
   private filters: Facets;
   private index = 'dev_Kavak';
-
+  private suggestions: any[];
+  private currentCarModel: [];
   constructor() {}
 
   newSearch(config): void {
@@ -33,5 +34,21 @@ export class AlgoliaService {
 
   getIndex(): string {
     return this.index;
+  }
+
+  setSuggestions(newSuggestions): void {
+    this.suggestions = newSuggestions;
+  }
+
+  getSuggestions(): any[] {
+    return this.suggestions;
+  }
+
+  setCurrentCarModel(carModels): void {
+    this.currentCarModel = carModels;
+  }
+
+  getCurrentCarModel(): any[] {
+    return this.currentCarModel;
   }
 }

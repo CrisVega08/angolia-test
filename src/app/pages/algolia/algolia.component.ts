@@ -23,6 +23,7 @@ export class AlgoliaComponent implements OnInit {
   facets: [];
   baseQueries = BASE_QUERIES;
   facetsGetted = false;
+
   constructor(private algoliaService: AlgoliaService) {}
 
   ngOnInit(): void {
@@ -37,20 +38,37 @@ export class AlgoliaComponent implements OnInit {
         }
         this.cars = hits;
         if (!this.facetsGetted) {
+          this.algoliaService.setSuggestions(suggest.hits);
           this.algoliaService.setFilters(facets);
           this.facetsGetted = true;
+        } else if (facets && facets.car_model) {
+          const carModelByFacet = Object.keys(facets.car_model).map((model) => ({ model, quantity: facets.car_model[model] }))
+          this.algoliaService.setCurrentCarModel(carModelByFacet);
         }
         this.facets = facets;
+        this.testFacets();
       });
     });
-        // this.testFacets();
   }
 
-  testFacets(): void{
+  testFacets(): void { // obtengo todos los car_models
+    this.index.searchForFacetValues('car_model', '', {
+
+    }).then(({ facetHits }) => {
+      console.log(facetHits);
+    });
+  }
+
+  testFacets2(): void {
     this.index.search('', {
-      filters: 'car_make:chevrolet'
+      tagFilters: [
+        [
+          'onix',
+          'Mazda 2'
+        ]
+      ]
     }).then(({ hits }) => {
-      this.cars = hits;
+      console.log(hits);
     });
   }
 

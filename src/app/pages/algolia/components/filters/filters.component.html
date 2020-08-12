@@ -1,3 +1,7 @@
 <div class="filters-container">
-  <app-make-filter [makes]='carMakesOptions' (makeSelected)='searchByFilter("car_make", $event)'></app-make-filter>
+  <app-make-filter
+    [makes]='carMakesOptions'
+    (makeSelected)='searchByFilter("car_make", $event)'
+    (modelSelected)='searchByModel($event)'
+  ></app-make-filter>
 </div>

@@ -32,12 +32,24 @@ export class FiltersComponent implements OnInit, OnDestroy {
   }
 
   searchByFilter(filterName = '', value = ''): void{
+    this.algoliaService.setCurrentCarModel([]);
     this.algoliaService.newSearch([{
       indexName: this.algoliaService.getIndex(),
       query: '',
       params: {
-        filters: `${filterName}:${value}`
+        facets: ['*'],
+        filters: `${filterName}:${value}`,
+        // filters: ['car_make:chevrolet', 'car_make:mazda']
+        // facetsFilter: ["car_model:A1 Sportback"]
       }
+    }]);
+  }
+
+  searchByModel(model): void {
+    // this.algoliaService.setCurrentCarModel([]);
+    this.algoliaService.newSearch([{
+      indexName: this.algoliaService.getIndex(),
+      query: model,
     }]);
   }
 
