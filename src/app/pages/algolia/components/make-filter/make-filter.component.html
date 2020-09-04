@@ -5,8 +5,9 @@
       <i class="make-icon" [style.backgroundImage]='"url(" + make.url +")"'></i>
       {{ make.make }}
     </button>
-    <div [ngClass]="{'dropdown-make-car': true, 'make-car-active': currentMake === make.make }">
-      <button class="make-car-item" *ngFor='let model of carModels' type="button" (click)="selectedModel(model.model)">
+    <div *ngIf='carModels?.length' [ngClass]="{'dropdown-make-car': true, 'make-car-active': currentMake === make.make }">
+      <button class="make-car-item" type="button" (click)="selectedFacet('car_make', make.make)">Todos</button>
+      <button class="make-car-item" *ngFor='let model of carModels' type="button" (click)="selectedFacet('car_model', model.model, make.make)">
         {{ model.model}} - ({{ model.quantity }})
       </button>
     </div>

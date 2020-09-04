@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AlgoliaComponent } from './algolia.component';
 
@@ -15,7 +16,8 @@ import { FiltersModule } from './components/filters/filters.module';
     CardCarModule,
     SearchModule,
     OrderBySelectModule,
-    FiltersModule
+    FiltersModule,
+    HttpClientModule
   ],
   exports: [AlgoliaComponent]
 })

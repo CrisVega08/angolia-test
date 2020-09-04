@@ -2,7 +2,6 @@ export const BASE_QUERIES = [{
   indexName: 'dev_Kavak',
   query: '',
   facets: ['*'],
-  // facets: ['car_make', 'car_model', 'car_year', 'final_price', 'km', 'region_name', 'body_type', 'ext_color', 'filter_status', 'location_filter', 'promotion_name', 'transmission', 'fuel_type', 'passengers']
 }, {
   indexName: 'dev_qs',
   query: '',

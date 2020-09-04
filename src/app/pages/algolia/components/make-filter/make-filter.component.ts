@@ -13,6 +13,7 @@ export class MakeFilterComponent implements OnInit {
   @Input() makes: [];
   @Output() makeSelected = new EventEmitter();
   @Output() modelSelected = new EventEmitter();
+  @Output() facetSelected = new EventEmitter();
   full = false;
   currentMake: string;
 
@@ -27,5 +28,9 @@ export class MakeFilterComponent implements OnInit {
 
   selectedModel(model): void {
     this.modelSelected.emit(model.replace(/\s/g, ''));
+  }
+
+  selectedFacet(property, value, make = ''): void {
+    this.facetSelected.emit({ property, value, make });
   }
 }

@@ -1,13 +1,41 @@
 .container-result {
   max-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex: 1;
+  flex-direction: column;
 }
 
 .container-page {
   max-width: 100%;
   display: flex;
+}
+
+.queries-container {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.query-item {
+  height: 20px;
+  padding: 5px 20px 5px 5px;
+  border-radius: 12px;
+  position: relative;
+  background-color: #583CC8;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+
+  &::after {
+    content: "x";
+    position: absolute;
+    color: white;
+    right: 7px;
+    top: 7px;
+  }
+}
+.cars-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .search-options {

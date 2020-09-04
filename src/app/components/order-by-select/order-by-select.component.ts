@@ -13,7 +13,7 @@ export class OrderBySelectComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  emitQuery({target}): void {
+  emitQuery({ target }): void {
     this.changeQueryOrderBy.emit(target.value);
   }
 }

@@ -4,10 +4,16 @@
     <app-order-by-select [options]='orderByIndecesOptions' (changeQueryOrderBy)='orderByChanged($event)'></app-order-by-select>
     <app-search [suggestions]='suggestions' (queryValueChanged)='newQuery($event)'></app-search>
   </div>
+  
   <div class="container-page">
     <app-filters></app-filters>
     <div class="container-result">
-      <app-card-car *ngFor='let car of cars; trackBy:trackByCard' [carInfo]='car'></app-card-car>
+      <div class="queries-container">
+        <span *ngFor="let query of queries; index as i" class="query-item" (click)='removeQuery(i)'>{{ query }}</span>
+      </div>
+      <div class="cars-container">
+        <app-card-car *ngFor='let car of cars; trackBy:trackByCard' [carInfo]='car'></app-card-car>
+      </div>
     </div>
   </div>
 </div>

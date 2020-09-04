@@ -33,24 +33,27 @@ export class FiltersComponent implements OnInit, OnDestroy {
 
   searchByFilter(filterName = '', value = ''): void{
     this.algoliaService.setCurrentCarModel([]);
-    this.algoliaService.newSearch([{
-      indexName: this.algoliaService.getIndex(),
-      query: '',
-      params: {
-        facets: ['*'],
-        filters: `${filterName}:${value}`,
-        // filters: ['car_make:chevrolet', 'car_make:mazda']
-        // facetsFilter: ["car_model:A1 Sportback"]
-      }
-    }]);
+    this.algoliaService.makeQueryCarMake({
+      facets: ['*'],
+      filters: `${filterName}:${value}`,
+    });
+
   }
 
   searchByModel(model): void {
     // this.algoliaService.setCurrentCarModel([]);
-    this.algoliaService.newSearch([{
-      indexName: this.algoliaService.getIndex(),
-      query: model,
-    }]);
+    // this.algoliaService.newSearch([{
+    //   indexName: this.algoliaService.getIndex(),
+    //   query: model,
+    // }]);
+  }
+
+  searchByFacet({property, value, make}): void {
+    if (make) {
+      this.algoliaService.removeMakeAndPushFacet(make, { property, value });
+    } else {
+      this.algoliaService.pushFacetQuery({ property, value });
+    }
   }
 
   private getLogo(carMake, white = false): string {

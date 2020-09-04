@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.subscription = this.form.valueChanges.pipe(
       map(({ value }) => value),
       debounceTime(300),
+      filter((x) => x && x.length > 0),
     ).subscribe(value => {
       this.queryValue = value;
       this.queryValueChanged.emit(value);
@@ -49,7 +50,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   setValue(newValue): void {
-    this.form.patchValue({ value: newValue});
+    this.form.patchValue({ value: null});
+    this.queryValueChanged.emit(newValue);
     this.showResults = false;
   }
 }
